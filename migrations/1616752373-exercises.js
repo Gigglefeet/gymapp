@@ -4,7 +4,8 @@ exports.up = async (sql) => {
 	( id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
 	exercise_name VARCHAR(50),
 	reps INT,
-	weight INT
+	weight INT,
+	workout_id INT REFERENCES workout_days(id)
 	);
 	`;
 };
