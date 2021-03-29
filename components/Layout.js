@@ -55,17 +55,27 @@ export default function Layout(props) {
             <a>Home</a>
           </Link>
           <Link href="/mygym">
-            <a>Training</a>
+            <a>Workout</a>
           </Link>
           <Link href="/about">
             <a>About</a>
           </Link>
-          <Link href="/register">
-            <a href="header-register">Register</a>
-          </Link>
-          <Link href="/login">
-            <a href="header-login">Login</a>
-          </Link>
+          <div>
+            {!props.isSessionValid ? (
+              <>
+                <Link href="/register">
+                  <a data-cy="header-register">Register</a>
+                </Link>
+                <Link href="/login">
+                  <a data-cy="header-login">Login</a>
+                </Link>
+              </>
+            ) : (
+              <Link href="/logout">
+                <a data-cy="header-logout">Logout</a>
+              </Link>
+            )}
+          </div>
         </nav>
       </header>
       {props.children}

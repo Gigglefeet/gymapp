@@ -3,7 +3,7 @@ import Layout from '../components/layout';
 export default function about() {
   return (
     <Layout>
-      <div>About Me</div>
+      <div>About</div>
       <p>
         Add some more text to this later. I started training some 20 years ago
         and after an initial trial month I fell in love with training.{' '}
