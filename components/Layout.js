@@ -11,7 +11,7 @@ const frontPage = css`
     width: 100vw;
     top: 0px;
     display: flex;
-    justify-content: flex-end;
+    justify-content: center;
     margin: 0;
     font-size: 32px;
     background-color: black;
@@ -27,15 +27,14 @@ const frontPage = css`
   .topLink {
     margin-right: auto;
   }
-  .bodyOfFrontPage {
-    font-size: 45px;
-    background-color: blue;
-  }
-  .imageContainer {
+
+  ${
+    '' /* .imageContainer {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     grid-template-rows: auto;
     margin-left: 80px;
+  } */
   }
   p {
     margin-right: 20px;
@@ -51,14 +50,14 @@ export default function Layout(props) {
       </Head>
       <header css={frontPage}>
         <nav className="navBarFront">
-          <Link href="/">
-            <a>Home</a>
+          <Link href="/myprofile">
+            <a>My Profile</a>
           </Link>
           <Link href="/mygym">
-            <a>Workout</a>
+            <a>My exercises</a>
           </Link>
-          <Link href="/about">
-            <a>About</a>
+          <Link href="/">
+            <a>|</a>
           </Link>
           <div>
             {!props.isSessionValid ? (

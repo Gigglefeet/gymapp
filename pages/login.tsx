@@ -105,6 +105,7 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   // If the user already has a valid session cookie,
   // don't allow visiting the login page
   if (session?.userId) {
+    context.res.setHeader('userId', session.userId);
     return {
       redirect: {
         destination: '/',

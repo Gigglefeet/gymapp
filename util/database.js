@@ -151,3 +151,17 @@ export async function deleteSessionById(id) {
   RETURNING *
 `;
 }
+
+// WORKOUT DAYS
+
+export async function insertWorkoutDay(day, description, userId) {
+  const workoutDay = await sql`
+    INSERT INTO workout_days
+      (day, description, user_id)
+    VALUES
+      (${day}, ${description}, ${userId})
+    RETURNING *
+  `;
+
+  return camelcaseRecords(workoutDay)[0];
+}

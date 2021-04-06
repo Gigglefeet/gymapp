@@ -1,9 +1,9 @@
 exports.up = async (sql) => {
   await sql`
 	CREATE TABLE workout_days( id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
-		day INT REFERENCES days(id),
+		day VARCHAR(20),
 		description VARCHAR(50),
-		id_users INT REFERENCES users(id)
+		user_id INT REFERENCES users(id)
 		);`;
 };
 

@@ -36,7 +36,6 @@ export default async function handler(
   }
 
   const { passwordHash, ...user } = userWithPasswordHash;
-  console.log(user);
   const passwordMatches = await doesPasswordMatchPasswordHash(
     password,
     passwordHash,
@@ -58,6 +57,7 @@ export default async function handler(
     session.token,
   );
 
+  res.setHeader('userId', user.id);
   res.setHeader('Set-Cookie', sessionCookie);
 
   res.send({
