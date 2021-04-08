@@ -4,7 +4,7 @@ import Layout from '../components/layout';
 
 export default function home() {
   return (
-    <Layout>
+    <>
       <div>
         <h1>My Profile</h1>
         <Image
@@ -15,6 +15,6 @@ export default function home() {
         />
         <p>Welcome to your profile!</p>
       </div>
-    </Layout>
+    </>
   );
 }

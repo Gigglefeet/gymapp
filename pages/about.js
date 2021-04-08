@@ -2,7 +2,7 @@ import Layout from '../components/layout';
 
 export default function about() {
   return (
-    <Layout>
+        <>
       <div>About</div>
       <p>
         Add some more text to this later. I started training some 20 years ago
@@ -21,6 +21,6 @@ export default function about() {
           </p>
         </div>
       </section>
-    </Layout>
+      </>
   );
 }

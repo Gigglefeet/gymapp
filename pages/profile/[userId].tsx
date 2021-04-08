@@ -1,7 +1,7 @@
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { Error, User } from '../../util/types';
-
+import Layout from '../../components/Layout';
 type Props =
   | {
       user: User;
@@ -15,10 +15,12 @@ export default function Profile(props: Props) {
   if (!props.user) {
     return (
       <>
-        <Head>
-          <title>{props.errors[0].message}</title>
-        </Head>
-        <h1>{props.errors[0].message}</h1>
+        <Layout>
+          <Head>
+            <title>{props.errors[0].message}</title>
+          </Head>
+          <h1>{props.errors[0].message}</h1>
+        </Layout>
       </>
     );
   }

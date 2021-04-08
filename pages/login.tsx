@@ -38,7 +38,6 @@ export default function Login(props: Props) {
           });
           const { user, errors: returnedErrors } = await response.json();
 
-          console.log('am I still working');
           if (returnedErrors) {
             setErrors(returnedErrors);
             return;

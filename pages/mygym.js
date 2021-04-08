@@ -41,13 +41,13 @@ export default function mygym() {
   const [savedCheckboxDays, setSavedCheckboxDays] = useState({});
   const [showExerciseOverlay, setShowExerciseOverlay] = useState(false);
   const [currentTrainingDayId, setCurrentTrainingDayId] = useState(null);
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUser, setCurrentUser] = useState(null);
   const handleDayCheckboxChange = (event) => {
     setSavedCheckboxDays({
       day: event.target.name,
     });
   };
-console.log(trainingDays);
+  console.log(trainingDays);
   // Todo 1. Trigger onClick event
   // 2. create a function to fetch
   // 3. connect the Trigger to the function
@@ -57,7 +57,7 @@ console.log(trainingDays);
       .get('http://localhost:3000/api/exercises', { withCredentials: true })
       .then((res) => {
         console.log(res);
-        const traningDays = res.data.trainingDays.data
+        const traningDays = res.data.trainingDays.data;
         setTrainingDays([...traningDays]);
       })
       .catch((error) => {
@@ -65,12 +65,10 @@ console.log(trainingDays);
       });
   }, [trainingDays]);
 
-  useEffect(() => {
-
-  }, []);
+  useEffect(() => {}, []);
 
   return (
-    <Layout>
+    <>
       <div>
         <button
           onClick={() => {
@@ -226,6 +224,6 @@ console.log(trainingDays);
           );
         })}
       </div>
-    </Layout>
+    </>
   );
 }
