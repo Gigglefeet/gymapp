@@ -49,7 +49,7 @@ export default function Login(props: Props) {
             : router.query.returnTo;
 
           router.push(returnTo || `/profile/${user.id}`);
-          props.setIsSessionStateStale(true);
+          // props.setIsSessionStateStale(true);
         }}
       >
         <label>

@@ -5,8 +5,11 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse,
 ) {
+
   const isSessionValid = Boolean(
     (await getSessionByToken(req.cookies.session))?.userId,
   );
-  res.send({ isSessionValid: isSessionValid });
+  const userId = (await getSessionByToken(req.cookies.session))?.userId;
+
+  res.send({ isSessionValid: isSessionValid, userId: userId });
 }

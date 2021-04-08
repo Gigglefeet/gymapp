@@ -1,7 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import axios from 'axios';
+import Slider, { createSliderWithTooltip } from 'rc-slider';
 import React, { useEffect, useState } from 'react';
-import Slider, { createSliderWithTooltip, Range } from 'rc-slider';
 
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
@@ -78,6 +79,7 @@ export const ExerciseModal = ({
   setTrainingDays,
   trainingDays,
   setShowExerciseOverlay,
+  currentUser
 }) => {
   const [sets, setSets] = useState(0);
   const [searchValue, setSearchValue] = useState('');
@@ -85,7 +87,6 @@ export const ExerciseModal = ({
   const [selectedExercise, setSelectedExercise] = useState('');
   const [rowsOfExercises, setRowsOfExercises] = useState([]);
   const [rowOfSet, setRowOfSet] = useState({});
-  console.log(workoutDayId);
   const renderRows = () => {
     const rows = [];
     for (let row = 0; row < sets; row++) {
@@ -244,6 +245,18 @@ export const ExerciseModal = ({
                 }
                 return trainingDay;
               });
+
+              axios
+                .post('http://localhost:3000/api/exercises', {
+                  data:updatedTrainingDays,
+                })
+                .then((res) => {
+                  console.log(res);
+                })
+                .catch((error) => {
+                  console.log(error);
+                });
+
               setTrainingDays([...updatedTrainingDays]);
               setSelectedExercise('');
               setRowOfSet({});

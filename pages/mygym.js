@@ -1,12 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import axios from 'axios';
 import { css } from '@emotion/react';
-import React, { useState, useEffect } from 'react';
-import Layout from '../components/Layout';
-import Slider, { createSliderWithTooltip, Range } from 'rc-slider';
+import axios from 'axios';
 import 'rc-slider/assets/index.css';
-import { forEachLeadingCommentRange } from 'typescript';
+import React, { useEffect, useState } from 'react';
 import { ExerciseModal } from '../components/ExerciseModal';
+import Layout from '../components/Layout';
 
 const dayCheckboxDescription = css`
   display: flex;
@@ -43,16 +41,33 @@ export default function mygym() {
   const [savedCheckboxDays, setSavedCheckboxDays] = useState({});
   const [showExerciseOverlay, setShowExerciseOverlay] = useState(false);
   const [currentTrainingDayId, setCurrentTrainingDayId] = useState(null);
+  const [currentUser, setCurrentUser] = useState(null)
   const handleDayCheckboxChange = (event) => {
     setSavedCheckboxDays({
       day: event.target.name,
     });
   };
-  console.log(trainingDays);
-
+console.log(trainingDays);
   // Todo 1. Trigger onClick event
   // 2. create a function to fetch
   // 3. connect the Trigger to the function
+
+  useEffect(() => {
+    axios
+      .get('http://localhost:3000/api/exercises', { withCredentials: true })
+      .then((res) => {
+        console.log(res);
+        const traningDays = res.data.trainingDays.data
+        setTrainingDays([...traningDays]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, [trainingDays]);
+
+  useEffect(() => {
+
+  }, []);
 
   return (
     <Layout>
@@ -166,6 +181,7 @@ export default function mygym() {
         ''
       )}
       <ExerciseModal
+        currentUser={currentUser}
         trainingDays={trainingDays}
         setTrainingDays={setTrainingDays}
         workoutDayId={currentTrainingDayId}
