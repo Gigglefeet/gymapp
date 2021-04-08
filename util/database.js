@@ -1,6 +1,6 @@
+import camelcaseKeys from 'camelcase-keys';
 import postgres from 'postgres';
 import { generateToken } from './sessions';
-import camelcaseKeys from 'camelcase-keys';
 // Reads values from the .env file
 // Which should be ignored in Git!
 require('dotenv-safe').config();
@@ -164,4 +164,47 @@ export async function insertWorkoutDay(day, description, userId) {
   `;
 
   return camelcaseRecords(workoutDay)[0];
+}
+
+// EXERCISES
+
+export async function insertExercise(name, reps, weights, workoutId){
+  const exercise = await sql`
+    INSERT INTO exercises
+      (exercise_name, reps, weight, workout_id)
+    VALUES
+      (${name}, ${reps}, ${weights},${workoutId})
+    RETURNING *
+  `;
+  return camelcaseRecords(exercise)[0];
+}
+
+export async function getWorkoutDayAndAllExercises (userId){
+    const trainingDays = await sql`
+    SELECT e.exercise_name,e.reps,e.weight,workout_days.day,workout_days.description FROM exercises as e, workout_days
+    WHERE workout_days.user_id=${userId}
+    `;
+    return camelcaseRecords(trainingDays);
+}
+
+export async function insertWorkoutDayWithAllExercises(userId,data){
+   const day = await sql`
+    INSERT INTO workoutDayWithAllExercises
+      (data, user_id)
+    VALUES
+      (${data}, ${userId})
+     ON CONFLICT (user_id) DO UPDATE SET data=${data}
+    RETURNING *
+  `;
+
+  return camelcaseRecords(day)[0];
+}
+
+export async function getWorkoutDayWithAllExercises(userId) {
+  const day = await sql`
+    SELECT * FROM workoutDayWithAllExercises
+    WHERE user_id=${userId}
+  `;
+
+  return camelcaseRecords(day)[0];
 }
