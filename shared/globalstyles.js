@@ -1,7 +1,4 @@
-import {
-  css,
-  Global,
-} from '@emotion/react';
+import { css, Global } from '@emotion/react';
 
 const myGlobalStyles = css`
   body {
@@ -11,5 +8,5 @@ const myGlobalStyles = css`
     color: #39ff14;
   }
 `;
-// Globastyles apply to all the pages in the pages folder
+
 export const globalStyles = <Global styles={myGlobalStyles} />;
