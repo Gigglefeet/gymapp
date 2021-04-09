@@ -1,11 +1,28 @@
 import camelcaseKeys from 'camelcase-keys';
 import postgres from 'postgres';
 import { generateToken } from './sessions';
-// Reads values from the .env file
-// Which should be ignored in Git!
-require('dotenv-safe').config();
 
-const sql = postgres();
+import setPostgresDefaultsOnHeroku from './setPostgresDefaultsOnHeroku';
+setPostgresDefaultsOnHeroku();
+require('dotenv-safe').config();
+// one time connection to the dataBase gymapp
+function connectToDataBase() {
+  let sql;
+  if (process.env.NODE_ENV === 'production') {
+    // Heroku needs SSL connections but
+    // has an "unauthorized" certificate
+    // https://devcenter.heroku.com/changelog-items/852
+    sql = postgres({ ssl: { rejectUnauthorized: false } });
+  } else {
+    if (!globalThis.__postgresSqlClient) {
+      globalThis.__postgresSqlClient = postgres();
+    }
+    sql = globalThis.__postgresSqlClient;
+  }
+  return sql;
+}
+
+const sql = connectToDataBase();
 
 function camelcaseRecords(records) {
   return records.map((record) => camelcaseKeys(record));
@@ -149,7 +166,8 @@ export async function deleteSessionById(id) {
   WHERE
   id = ${id}
   RETURNING *
-`;
+  `;
+  return camelcaseRecords(sessions)[0];
 }
 
 // WORKOUT DAYS
@@ -168,7 +186,7 @@ export async function insertWorkoutDay(day, description, userId) {
 
 // EXERCISES
 
-export async function insertExercise(name, reps, weights, workoutId){
+export async function insertExercise(name, reps, weights, workoutId) {
   const exercise = await sql`
     INSERT INTO exercises
       (exercise_name, reps, weight, workout_id)
@@ -179,16 +197,16 @@ export async function insertExercise(name, reps, weights, workoutId){
   return camelcaseRecords(exercise)[0];
 }
 
-export async function getWorkoutDayAndAllExercises (userId){
-    const trainingDays = await sql`
+export async function getWorkoutDayAndAllExercises(userId) {
+  const trainingDays = await sql`
     SELECT e.exercise_name,e.reps,e.weight,workout_days.day,workout_days.description FROM exercises as e, workout_days
     WHERE workout_days.user_id=${userId}
     `;
-    return camelcaseRecords(trainingDays);
+  return camelcaseRecords(trainingDays);
 }
 
-export async function insertWorkoutDayWithAllExercises(userId,data){
-   const day = await sql`
+export async function insertWorkoutDayWithAllExercises(userId, data) {
+  const day = await sql`
     INSERT INTO workoutDayWithAllExercises
       (data, user_id)
     VALUES

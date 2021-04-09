@@ -2,7 +2,7 @@ import Head from 'next/head';
 
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-import Layout from '../components/Layout';
+
 import Image from 'next/image';
 
 const navigationBar = css`
@@ -41,13 +41,13 @@ export default function MyProfile() {
             <h3>Welcome to my training app</h3>
           </div>
           {/* // don't forget to comment the picture in before the graduation event */}
-          {/* <Image
-              className="mountain-fight"
-              src="/fightingmountain.jpg"
-              alt="Me fighting the Mountain from Game of Thrones"
-              width={650}
-              height={500}
-            /> */}
+          <Image
+            className="mountain-fight"
+            src="/fightingmountain.jpg"
+            alt="Me fighting the Mountain from Game of Thrones"
+            width={650}
+            height={500}
+          />
           <div>
             <h3>I destroyed him after the picture was taken </h3>
           </div>

@@ -2,9 +2,8 @@
 import { css } from '@emotion/react';
 import axios from 'axios';
 import 'rc-slider/assets/index.css';
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ExerciseModal } from '../components/ExerciseModal';
-import Layout from '../components/Layout';
 
 const dayCheckboxDescription = css`
   display: flex;
@@ -32,12 +31,12 @@ const weekdays = css`
   }
 `;
 
-export default function mygym() {
+export default function MyGym() {
   // useState for the API where exercises are set with an empty array as a starting state.
 
   const [trainingDays, setTrainingDays] = useState([]);
-  const [trainingdayButtonClick, setTrainingdayButtonClick] = useState(false);
-  const [dayDescription, setdayDescription] = useState('');
+  const [trainingDayButtonClick, setTrainingDayButtonClick] = useState(false);
+  const [dayDescription, setDayDescription] = useState('');
   const [savedCheckboxDays, setSavedCheckboxDays] = useState({});
   const [showExerciseOverlay, setShowExerciseOverlay] = useState(false);
   const [currentTrainingDayId, setCurrentTrainingDayId] = useState(null);
@@ -57,13 +56,13 @@ export default function mygym() {
       .get('http://localhost:3000/api/exercises', { withCredentials: true })
       .then((res) => {
         console.log(res);
-        const traningDays = res.data.trainingDays.data;
-        setTrainingDays([...traningDays]);
+        const trainingDays = res.data.trainingDays.data;
+        setTrainingDays([...trainingDays]);
       })
       .catch((error) => {
         console.log(error);
       });
-  }, [trainingDays]);
+  }, []);
 
   useEffect(() => {}, []);
 
@@ -72,18 +71,18 @@ export default function mygym() {
       <div>
         <button
           onClick={() => {
-            setTrainingdayButtonClick(true);
+            setTrainingDayButtonClick(true);
           }}
         >
           Add Training Day
         </button>
       </div>
-      {trainingdayButtonClick ? (
+      {trainingDayButtonClick ? (
         <form onSubmit={() => {}}>
           <div css={weekdays}>
             <input
               onChange={(event) => {
-                setdayDescription(event.target.value);
+                setDayDescription(event.target.value);
               }}
               value={dayDescription}
             />
@@ -94,7 +93,7 @@ export default function mygym() {
                 name="Monday"
                 value="Monday"
               />
-              <label>Monday</label>
+              <label htmlFor="checkbox">Monday</label>
             </div>
             <div className="weekday-row">
               <input
@@ -103,7 +102,7 @@ export default function mygym() {
                 name="Tuesday"
                 value="Tuesday"
               />
-              <label>Tuesday</label>
+              <label htmlFor="checkbox">Tuesday</label>
             </div>
             <div className="weekday-row">
               <input
@@ -112,7 +111,7 @@ export default function mygym() {
                 name="Wednesday"
                 value="Wednesday"
               />
-              <label>Wednesday</label>
+              <label htmlFor="checkbox">Wednesday</label>
             </div>
             <div className="weekday-row">
               <input
@@ -121,7 +120,7 @@ export default function mygym() {
                 name="Thursday"
                 value="Thursday"
               />
-              <label>Thursday</label>
+              <label htmlFor="checkbox">Thursday</label>
             </div>
             <div className="weekday-row">
               <input
@@ -130,7 +129,7 @@ export default function mygym() {
                 name="Friday"
                 value="Friday"
               />
-              <label>Friday</label>
+              <label htmlFor="checkbox">Friday</label>
             </div>
 
             <div className="weekday-row">
@@ -140,7 +139,7 @@ export default function mygym() {
                 name="Saturday"
                 value="Saturday"
               />
-              <label>Saturday</label>
+              <label htmlFor="checkbox">Saturday</label>
             </div>
             <div className="weekday-row">
               <input
@@ -149,11 +148,11 @@ export default function mygym() {
                 name="Sunday"
                 value="Sunday"
               />
-              <label>Sunday</label>
+              <label htmlFor="checkbox">Sunday</label>
             </div>
             <button
               onClick={async () => {
-                setTrainingdayButtonClick(false);
+                setTrainingDayButtonClick(false);
 
                 try {
                   const res = await axios.post(
@@ -166,7 +165,7 @@ export default function mygym() {
                 } catch (error) {
                   console.log(error);
                 }
-                setdayDescription('');
+                setDayDescription('');
                 setSavedCheckboxDays({});
               }}
               className="save-button"
@@ -202,25 +201,23 @@ export default function mygym() {
             }
           }
           return (
-            <>
-              <div className="dayCheckboxDescription" key={Math.random()}>
-                {' '}
-                <div className="header">
-                  {day.description} - {day.day}{' '}
-                </div>
-                <div className="button-wrapper">
-                  {day.exercises ? exercises : ''}
-                  <button
-                    onClick={() => {
-                      setShowExerciseOverlay(true);
-                      setCurrentTrainingDayId(day.id);
-                    }}
-                  >
-                    Add Exercises
-                  </button>
-                </div>
+            <div className="dayCheckboxDescription" key={Math.random()}>
+              {' '}
+              <div className="header">
+                {day.description} - {day.day}{' '}
               </div>
-            </>
+              <div className="button-wrapper">
+                {day.exercises ? exercises : ''}
+                <button
+                  onClick={() => {
+                    setShowExerciseOverlay(true);
+                    setCurrentTrainingDayId(day.id);
+                  }}
+                >
+                  Add Exercises
+                </button>
+              </div>
+            </div>
           );
         })}
       </div>

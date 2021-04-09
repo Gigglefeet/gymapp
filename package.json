@@ -5,18 +5,18 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start",
+    "heroku-postbuild": "yarn migrate up && yarn build",
+    "start": "next start -p ${PORT:-\"3000\"}",
     "migrate": "dotenv ley"
   },
   "dependencies": {
     "@emotion/react": "^11.1.5",
-    "@upleveled/eslint-config-upleveled": "^1.7.3",
+    "@upleveled/eslint-config-upleveled": "1.9.0",
     "argon2": "^0.27.1",
     "axios": "^0.21.1",
     "camelcase-keys": "^6.2.2",
     "cookie": "^0.4.1",
     "csrf": "^3.1.0",
-    "js-cookie": "^2.2.1",
     "ley": "^0.7.0",
     "next": "10.0.9",
     "pg-connection-string": "^2.4.0",
@@ -27,10 +27,29 @@
   },
   "devDependencies": {
     "@types/cookie": "^0.4.0",
-    "@types/node": "^14.14.35",
-    "@types/react": "^17.0.3",
+    "@types/node": "14.14.37",
+    "@types/react": "17.0.3",
+    "@types/react-dom": "17.0.3",
+    "@typescript-eslint/eslint-plugin": "4.20.0",
+    "@typescript-eslint/parser": "4.20.0",
+    "babel-eslint": "10.1.0",
     "dotenv-cli": "^4.0.0",
     "dotenv-safe": "^8.2.0",
-    "typescript": "^4.2.3"
-  }
+    "eslint": "7.23.0",
+    "eslint-config-react-app": "6.0.0",
+    "eslint-import-resolver-typescript": "2.4.0",
+    "eslint-plugin-cypress": "2.11.2",
+    "eslint-plugin-flowtype": "5.4.0",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-jest": "24.3.2",
+    "eslint-plugin-jsx-a11y": "6.4.1",
+    "eslint-plugin-react": "7.23.1",
+    "eslint-plugin-react-hooks": "4.2.0",
+    "eslint-plugin-testing-library": "3.10.2",
+    "eslint-plugin-unicorn": "29.0.0",
+    "typescript": "4.2.3"
+  },
+  "cacheDirectories": [
+    ".next/cache"
+  ]
 }

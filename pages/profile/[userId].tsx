@@ -2,26 +2,20 @@ import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { Error, User } from '../../util/types';
 import Layout from '../../components/Layout';
-type Props =
-  | {
-      user: User;
-    }
-  | {
-      user: null;
-      errors: Error[];
-    };
+type Props = {
+  user?: User;
+  errors: Error[];
+};
 
 export default function Profile(props: Props) {
   if (!props.user) {
     return (
-      <>
-        <Layout>
-          <Head>
-            <title>{props.errors[0].message}</title>
-          </Head>
-          <h1>{props.errors[0].message}</h1>
-        </Layout>
-      </>
+      <Layout>
+        <Head>
+          <title>{props.errors[0].message}</title>
+        </Head>
+        <h1>{props.errors[0].message}</h1>
+      </Layout>
     );
   }
 
