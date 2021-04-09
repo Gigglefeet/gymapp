@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import Layout from '../components/Layout';
-import { globalStyles } from '../shared/globalStyles';
+import { globalStyles } from '../shared/globalstyles';
 export default function App({ Component, pageProps }) {
   const [isSessionStateStale, setIsSessionStateStale] = useState(true);
 
