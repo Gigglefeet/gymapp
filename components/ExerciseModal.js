@@ -3,7 +3,14 @@ import { css } from '@emotion/react';
 import axios from 'axios';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import React, { useEffect, useState } from 'react';
+let baseurl;
+if (process.env.NODE_ENV === 'development') {
+  baseurl = 'http://localhost:3000';
+}
 
+if (process.env.NODE_ENV === 'production') {
+  baseurl = 'https://gym80.herokuapp.com';
+}
 const SliderWithTooltip = createSliderWithTooltip(Slider);
 
 const selectedExercise = css`
@@ -79,7 +86,7 @@ export const ExerciseModal = ({
   setTrainingDays,
   trainingDays,
   setShowExerciseOverlay,
-  currentUser
+  currentUser,
 }) => {
   const [sets, setSets] = useState(0);
   const [searchValue, setSearchValue] = useState('');
@@ -178,7 +185,7 @@ export const ExerciseModal = ({
             setSearchValue(event.target.value);
           }}
           value={searchValue}
-        ></input>
+        />
         <p>{selectedExercise}</p>
         {exercises.length > 0 ? (
           <div className="dropdown">
@@ -187,6 +194,15 @@ export const ExerciseModal = ({
                 ? exercises.map((exercise) => {
                     return (
                       <li
+                        // eslint-disable-next-line jsx-a11y/no-noninteractive-element-to-interactive-role
+                        role="button"
+                        onKeyDown={(e) => {
+                          if (e.key === 'e') {
+                            setSelectedExercise(exercise.value);
+                            setExercises([]);
+                            setSearchValue('');
+                          }
+                        }}
                         onClick={() => {
                           setSelectedExercise(exercise.value);
                           setExercises([]);
@@ -247,8 +263,8 @@ export const ExerciseModal = ({
               });
 
               axios
-                .post('http://localhost:3000/api/exercises', {
-                  data:updatedTrainingDays,
+                .post(`${baseurl}/api/exercises`, {
+                  data: updatedTrainingDays,
                 })
                 .then((res) => {
                   console.log(res);

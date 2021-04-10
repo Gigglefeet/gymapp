@@ -4,6 +4,14 @@ import axios from 'axios';
 import 'rc-slider/assets/index.css';
 import { useEffect, useState } from 'react';
 import { ExerciseModal } from '../components/ExerciseModal';
+let baseurl;
+if (process.env.NODE_ENV === 'development') {
+  baseurl = 'http://localhost:3000';
+}
+
+if (process.env.NODE_ENV === 'production') {
+  baseurl = 'https://gym80.herokuapp.com';
+}
 
 const dayCheckboxDescription = css`
   display: flex;
@@ -53,7 +61,7 @@ export default function MyGym() {
 
   useEffect(() => {
     axios
-      .get('http://localhost:3000/api/exercises', { withCredentials: true })
+      .get(`${baseurl}/api/exercises`, { withCredentials: true })
       .then((res) => {
         console.log(res);
         const trainingDays = res.data.trainingDays.data;
@@ -155,10 +163,10 @@ export default function MyGym() {
                 setTrainingDayButtonClick(false);
 
                 try {
-                  const res = await axios.post(
-                    'http://localhost:3000/api/workout-days',
-                    { description: dayDescription, ...savedCheckboxDays },
-                  );
+                  const res = await axios.post(`${baseurl}/api/workout-days`, {
+                    description: dayDescription,
+                    ...savedCheckboxDays,
+                  });
                   console.log(res.data);
                   const workoutDay = res.data.workoutDay;
                   setTrainingDays([...trainingDays, workoutDay]);
