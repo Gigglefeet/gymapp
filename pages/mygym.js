@@ -13,22 +13,44 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NODE_ENV === 'production') {
   baseurl = 'https://gym80.herokuapp.com';
 }
+const checkboxwrapper = css``;
 const buttons = css`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   .material-button {
     color: #ff00ff;
+    margin-left: 20px;
+    padding: 10px;
+    width: 10%;
+    margin-bottom: 10px;
   }
 `;
 const dayCheckboxDescription = css`
   display: flex;
-  flex-direction: column;
-  width: 25%;
+  ${'' /* flex-direction: column;
+  align-items: center; */}
+  justify-content: center;
+  width: 80%;
+
   .header {
+    display: grid;
+    justify-content: center;
     background-color: gray;
-    border-radius: 0 10px 0 0;
+    border-radius: 10px 10px 0 0;
+    ${'' /* margin-left: 20px; */}
+    padding: 10px;
+    ${'' /* width: 100%; */}
   }
+
   .button-wrapper {
+    display: grid;
+    justify-content: center;
     background-color: purple;
-    border-radius: 0 0 10px 0;
+    border-radius: 0 0 10px 10px;
+    ${'' /* margin-left: 20px; */}
+    padding: 10px;
+    ${'' /* width: 100%; */}
   }
 `;
 const weekdays = css`
@@ -44,6 +66,9 @@ const weekdays = css`
     align-items: center;
   }
   .save-button {
+    width: 10%;
+  }
+  .css-1edt6nb {
     width: 10%;
   }
 `;
@@ -220,41 +245,43 @@ export default function MyGym() {
         showExerciseOverlay={showExerciseOverlay}
         setShowExerciseOverlay={setShowExerciseOverlay}
       />
-      <div css={dayCheckboxDescription}>
-        {trainingDays.map((day) => {
-          const exercises = [];
+      <div css={checkboxwrapper}>
+        <div css={dayCheckboxDescription}>
+          {trainingDays.map((day) => {
+            const exercises = [];
 
-          for (let exercise in day.exercises) {
-            exercises.push(<div>{exercise}</div>);
-            for (let row in day.exercises[exercise].sets) {
-              exercises.push(
-                <p>
-                  {day.exercises[exercise].sets[row].reps} x{' '}
-                  {day.exercises[exercise].sets[row].weight} kg
-                </p>,
-              );
+            for (let exercise in day.exercises) {
+              exercises.push(<div>{exercise}</div>);
+              for (let row in day.exercises[exercise].sets) {
+                exercises.push(
+                  <p>
+                    {day.exercises[exercise].sets[row].reps} x{' '}
+                    {day.exercises[exercise].sets[row].weight} kg
+                  </p>,
+                );
+              }
             }
-          }
-          return (
-            <div className="dayCheckboxDescription" key={Math.random()}>
-              {' '}
-              <div className="header">
-                {day.description} - {day.day}{' '}
+            return (
+              <div className="dayCheckboxDescription" key={Math.random()}>
+                {' '}
+                <div className="header">
+                  {day.description} - {day.day}{' '}
+                </div>
+                <div className="button-wrapper">
+                  {day.exercises ? exercises : ''}
+                  <button
+                    onClick={() => {
+                      setShowExerciseOverlay(true);
+                      setCurrentTrainingDayId(day.id);
+                    }}
+                  >
+                    Add Exercises
+                  </button>
+                </div>
               </div>
-              <div className="button-wrapper">
-                {day.exercises ? exercises : ''}
-                <button
-                  onClick={() => {
-                    setShowExerciseOverlay(true);
-                    setCurrentTrainingDayId(day.id);
-                  }}
-                >
-                  Add Exercises
-                </button>
-              </div>
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
       </div>
     </>
   );

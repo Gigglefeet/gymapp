@@ -45,7 +45,7 @@ export default function Layout(props) {
   return (
     <>
       <Head>
-        <title>GymApp</title>
+        <title>Gym80</title>
         <link rel="icon" href="/public/favicon.ico/" />
       </Head>
       <header css={frontPage}>
