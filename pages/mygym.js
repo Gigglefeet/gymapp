@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
+import { Button, Checkbox } from '@material-ui/core';
 import axios from 'axios';
 import 'rc-slider/assets/index.css';
 import { useEffect, useState } from 'react';
@@ -12,16 +13,22 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NODE_ENV === 'production') {
   baseurl = 'https://gym80.herokuapp.com';
 }
-
+const buttons = css`
+  .material-button {
+    color: #ff00ff;
+  }
+`;
 const dayCheckboxDescription = css`
   display: flex;
   flex-direction: column;
   width: 25%;
   .header {
     background-color: gray;
+    border-radius: 0 10px 0 0;
   }
   .button-wrapper {
-    background-color: white;
+    background-color: purple;
+    border-radius: 0 0 10px 0;
   }
 `;
 const weekdays = css`
@@ -29,10 +36,12 @@ const weekdays = css`
   flex-direction: column;
   width: 30%;
   padding: 30px 20px;
-  background-color: gray;
+  background-color: #808080;
+  border-radius: 20px;
   .weekday-row {
     display: flex;
     gap: 5px;
+    align-items: center;
   }
   .save-button {
     width: 10%;
@@ -76,14 +85,18 @@ export default function MyGym() {
 
   return (
     <>
-      <div>
-        <button
+      <div css={buttons}>
+        <Button
+          className="material-button"
+          variant="outlined"
+          size="small"
+          color="primary"
           onClick={() => {
             setTrainingDayButtonClick(true);
           }}
         >
           Add Training Day
-        </button>
+        </Button>
       </div>
       {trainingDayButtonClick ? (
         <form onSubmit={() => {}}>
@@ -95,7 +108,9 @@ export default function MyGym() {
               value={dayDescription}
             />
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Monday"
@@ -104,7 +119,9 @@ export default function MyGym() {
               <label htmlFor="checkbox">Monday</label>
             </div>
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Tuesday"
@@ -113,7 +130,9 @@ export default function MyGym() {
               <label htmlFor="checkbox">Tuesday</label>
             </div>
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Wednesday"
@@ -122,7 +141,9 @@ export default function MyGym() {
               <label htmlFor="checkbox">Wednesday</label>
             </div>
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Thursday"
@@ -131,7 +152,9 @@ export default function MyGym() {
               <label htmlFor="checkbox">Thursday</label>
             </div>
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Friday"
@@ -141,7 +164,9 @@ export default function MyGym() {
             </div>
 
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Saturday"
@@ -150,7 +175,9 @@ export default function MyGym() {
               <label htmlFor="checkbox">Saturday</label>
             </div>
             <div className="weekday-row">
-              <input
+              <Checkbox
+                color="primary"
+                inputProps={{ 'aria-label': 'secondary checkbox' }}
                 onChange={handleDayCheckboxChange}
                 type="checkbox"
                 name="Sunday"

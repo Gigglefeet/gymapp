@@ -23,7 +23,9 @@ const navigationBar = css`
   }
   .section-wrapper {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: 30vw;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-content: center;
   }
 `;
 
