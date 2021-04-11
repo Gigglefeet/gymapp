@@ -13,6 +13,7 @@ if (process.env.NODE_ENV === 'development') {
 if (process.env.NODE_ENV === 'production') {
   baseurl = 'https://gym80.herokuapp.com';
 }
+
 const checkboxwrapper = css``;
 const buttons = css`
   display: flex;
@@ -28,19 +29,20 @@ const buttons = css`
 `;
 const dayCheckboxDescription = css`
   display: flex;
-  ${'' /* flex-direction: column;
-  align-items: center; */}
   justify-content: center;
+  gap: 30px;
   width: 80%;
-
+  margin: 0 auto;
+  .training-day-wrapper {
+    margin-right: 15px;
+  }
   .header {
     display: grid;
     justify-content: center;
     background-color: gray;
     border-radius: 10px 10px 0 0;
-    ${'' /* margin-left: 20px; */}
+
     padding: 10px;
-    ${'' /* width: 100%; */}
   }
 
   .button-wrapper {
@@ -54,6 +56,9 @@ const dayCheckboxDescription = css`
   }
 `;
 const weekdays = css`
+  position: absolute;
+  top: 15%;
+  right: 35%;
   display: flex;
   flex-direction: column;
   width: 30%;
@@ -262,7 +267,7 @@ export default function MyGym() {
               }
             }
             return (
-              <div className="dayCheckboxDescription" key={Math.random()}>
+              <div className="training-day-wrapper" key={Math.random()}>
                 {' '}
                 <div className="header">
                   {day.description} - {day.day}{' '}

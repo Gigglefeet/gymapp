@@ -19,10 +19,13 @@ const selectedExercise = css`
   }
 `;
 const dropdown = css`
-  background-color: #c0c0c0;
+  background-color: purple;
   padding: 30px 20px;
   width: 30%;
   position: relative;
+  top: 25%;
+  left: 35%;
+  border-radius: 20px;
   .exercise-input {
     width: 100%;
   }
