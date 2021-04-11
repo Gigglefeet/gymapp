@@ -9,9 +9,10 @@ export default async function handler(
 ) {
   if (req.method === 'POST') {
     // need userId
-    const cookies = req.headers.cookie;
+    // const cookies = req.headers.cookie;
     const { day, description } = req.body;
-    const token = cookie.parse(cookies ? cookies : '');
+    // const token = cookie.parse(cookies ? cookies : '');
+    const token = cookie.parse(req.headers.cookie || '');
     const session = await getSessionByToken(token.session);
     const userId = session.userId;
     const workoutDay = await insertWorkoutDay(day, description, userId);

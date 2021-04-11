@@ -99,8 +99,8 @@ export default function MyGym() {
       .get(`${baseurl}/api/exercises`, { withCredentials: true })
       .then((res) => {
         console.log(res);
-        trainingDays = res.data.trainingDays.data;
-        setTrainingDays([...trainingDays]);
+        const trainingDaysFetched = res.data.trainingDays.data;
+        setTrainingDays([...trainingDaysFetched]);
       })
       .catch((error) => {
         console.log(error);

@@ -1,8 +1,6 @@
 import Head from 'next/head';
-
 /** @jsxImportSource @emotion/react */
 import { css } from '@emotion/react';
-
 import Image from 'next/image';
 
 const navigationBar = css`
@@ -117,6 +115,10 @@ export default function MyProfile() {
               alt="Hafthor in a t-shirt saying training to fight the mountain"
               width={950}
               height={550}
+            />
+            <img
+              src="/upleveled-screenshot.png"
+              alt="Hafthor in a t-shirt saying training to fight the mountain"
             />
             <br />
             <br />
