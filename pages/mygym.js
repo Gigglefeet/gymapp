@@ -15,7 +15,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const checkboxwrapper = css``;
+
 const buttons = css`
+  margin-top: 75px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -215,8 +217,8 @@ export default function MyGym() {
               />
               <label htmlFor="checkbox">Sunday</label>
             </div>
-            <button
-              onClick={async () => {
+            <Button variant="contained" color="primary">
+              {async () => {
                 setTrainingDayButtonClick(false);
 
                 try {
@@ -233,10 +235,8 @@ export default function MyGym() {
                 setDayDescription('');
                 setSavedCheckboxDays({});
               }}
-              className="save-button"
-            >
               Save
-            </button>
+            </Button>
           </div>
         </form>
       ) : (
@@ -274,14 +274,13 @@ export default function MyGym() {
                 </div>
                 <div className="button-wrapper">
                   {day.exercises ? exercises : ''}
-                  <button
-                    onClick={() => {
+                  <Button variant="contained" color="default" size="small">
+                    {() => {
                       setShowExerciseOverlay(true);
                       setCurrentTrainingDayId(day.id);
                     }}
-                  >
                     Add Exercises
-                  </button>
+                  </Button>
                 </div>
               </div>
             );

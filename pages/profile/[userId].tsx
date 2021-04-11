@@ -1,7 +1,16 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { Error, User } from '../../util/types';
 import Layout from '../../components/Layout';
+
+const labels = css`
+  display: flex;
+  justify-content: center;
+  color: white;
+`;
+
 type Props = {
   user?: User;
   errors: Error[];
@@ -20,7 +29,7 @@ export default function Profile(props: Props) {
   }
 
   return (
-    <>
+    <div css={labels}>
       <Head>
         <title>User Profile: {props.user.username}</title>
       </Head>
@@ -28,7 +37,7 @@ export default function Profile(props: Props) {
       <h1>{props.user.username}</h1>
 
       <div>id: {props.user.id}</div>
-    </>
+    </div>
   );
 }
 

@@ -5,7 +5,8 @@ const myGlobalStyles = css`
     margin: 0;
     padding: 0;
     background-color: #1c1a1a;
-    color: #39ff14;
+    ${'' /* neon green color #39ff14 */}
+    color: black;
   }
 `;
 

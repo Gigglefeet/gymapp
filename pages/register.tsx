@@ -1,8 +1,35 @@
+/** @jsxImportSource @emotion/react */
+import { css } from '@emotion/react';
 import { GetServerSidePropsContext } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { Error } from '../util/types';
+import { Button, Checkbox } from '@material-ui/core';
+const labels = css`
+  margin-top: 75px;
+  label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 10%;
+    color: white;
+    margin: 0 auto;
+  }
+  .register-button {
+    display: flex;
+    justify-content: center;
+  }
+  input {
+    border-radius: 5px;
+  }
+  Button {
+    color: #e555f8;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+  }
+`;
 
 type Props = {
   csrfToken: string;
@@ -50,22 +77,32 @@ export default function Register(props: Props) {
           router.push('/login'); // change this when finished with the whole auth setup.
         }}
       >
-        <label>
-          username:
-          <input
-            value={username}
-            onChange={(event) => setUsername(event.currentTarget.value)}
-          />
-        </label>
-        <label>
-          password:
-          <input
-            type="password"
-            value={password}
-            onChange={(event) => setPassword(event.currentTarget.value)}
-          />
-        </label>
-        <button type="submit">register</button>
+        <div css={labels}>
+          <label>
+            Username:
+            <input
+              value={username}
+              onChange={(event) => setUsername(event.currentTarget.value)}
+            />
+          </label>
+          <label>
+            Password:
+            <input
+              type="password"
+              value={password}
+              onChange={(event) => setPassword(event.currentTarget.value)}
+            />
+            <Button
+              className="material-button"
+              variant="outlined"
+              size="small"
+              color="primary"
+              type="submit"
+            >
+              Register
+            </Button>
+          </label>
+        </div>
       </form>
 
       {errors.map((error) => (

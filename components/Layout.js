@@ -7,7 +7,7 @@ import { css } from '@emotion/react';
 // This controls the navbar
 const frontPage = css`
   .navBarFront {
-    position: relative;
+    position: fixed;
     width: 100vw;
     top: 0px;
     display: flex;
@@ -16,13 +16,15 @@ const frontPage = css`
     font-size: 32px;
     background-color: black;
     padding: 10px 0;
+    z-index: 1;
   }
   ${'' /* a tag in the navigationBar menu below this */}
   a {
     position: relative;
     margin: 5px 75px;
     text-decoration: none;
-    color: #ffff01;
+    ${'' /* neon yellow color #ffff01 */}
+    color: white;
   }
   .topLink {
     margin-right: auto;
