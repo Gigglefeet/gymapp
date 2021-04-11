@@ -211,8 +211,10 @@ export default function MyGym() {
               />
               <label htmlFor="checkbox">Sunday</label>
             </div>
-            <Button variant="contained" color="primary">
-              {async () => {
+            <Button
+              variant="contained"
+              color="primary"
+              onClick={async () => {
                 setTrainingDayButtonClick(false);
 
                 try {
@@ -229,6 +231,7 @@ export default function MyGym() {
                 setDayDescription('');
                 setSavedCheckboxDays({});
               }}
+            >
               Save
             </Button>
           </div>
@@ -263,16 +266,20 @@ export default function MyGym() {
             return (
               <div className="training-day-wrapper" key={Math.random()}>
                 {' '}
-                <div className="header">
+                <div className="header" key={Math.random()}>
                   {day.description} - {day.day}{' '}
                 </div>
-                <div className="button-wrapper">
+                <div className="button-wrapper" key={Math.random()}>
                   {day.exercises ? exercises : ''}
-                  <Button variant="contained" color="default" size="small">
-                    {() => {
+                  <Button
+                    variant="contained"
+                    color="default"
+                    size="small"
+                    onClick={() => {
                       setShowExerciseOverlay(true);
                       setCurrentTrainingDayId(day.id);
                     }}
+                  >
                     Add Exercises
                   </Button>
                 </div>
