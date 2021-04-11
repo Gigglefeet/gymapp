@@ -19,6 +19,7 @@ const selectedExercise = css`
   }
 `;
 const dropdown = css`
+  z-index: 2;
   background-color: purple;
   padding: 30px 20px;
   width: 30%;

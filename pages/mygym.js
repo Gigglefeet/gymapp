@@ -52,9 +52,7 @@ const dayCheckboxDescription = css`
     justify-content: center;
     background-color: purple;
     border-radius: 0 0 10px 10px;
-    ${'' /* margin-left: 20px; */}
     padding: 10px;
-    ${'' /* width: 100%; */}
   }
 `;
 const weekdays = css`
@@ -95,17 +93,13 @@ export default function MyGym() {
       day: event.target.name,
     });
   };
-  console.log(trainingDays);
-  // Todo 1. Trigger onClick event
-  // 2. create a function to fetch
-  // 3. connect the Trigger to the function
 
   useEffect(() => {
     axios
       .get(`${baseurl}/api/exercises`, { withCredentials: true })
       .then((res) => {
         console.log(res);
-        const trainingDays = res.data.trainingDays.data;
+        trainingDays = res.data.trainingDays.data;
         setTrainingDays([...trainingDays]);
       })
       .catch((error) => {

@@ -44,8 +44,8 @@ export default function MyProfile() {
           <div className="welcome-to-training">
             <h3>Welcome to the greates gratuation ever built</h3>
             <h3>
-              What do you do when you look like this and you have lost your job
-              because of Corona?
+              What to do when you look like this and lost your job because of a
+              Global Pandemic?
             </h3>
 
             <Image
@@ -71,29 +71,68 @@ export default function MyProfile() {
             <br />
             <h3>
               STEP 1: <br />
-              Make your own training app.{' '}
-              <h1>"""Setja inn screenshot af appinu mínu"""</h1>
+              Make your own training app. <br />
+              <br />
+              <Image
+                className="mountain-fight"
+                src="/gym80-screenshot.png"
+                alt="Hafthor in a t-shirt saying training to fight the mountain"
+                width={950}
+                height={550}
+              />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
             </h3>
             <h3>
               STEP 2: <br />
               Sign up for a full stack web development Bootcamp at UpLeveled.
             </h3>
-            <h1>Setja inn mynd af UpLeveled logoinu</h1>
+            <Image
+              className="mountain-fight"
+              src="/upleveled-screenshot.png"
+              alt="Hafthor in a t-shirt saying training to fight the mountain"
+              width={950}
+              height={550}
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <h3>
               STEP 3: <br />
               Start training to fight the mountain.
             </h3>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <br />
             <br />
             <br />
@@ -112,18 +151,37 @@ export default function MyProfile() {
               width={650}
               height={650}
             />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <h3>
               But obviously that takes a lot of training. So let's get going.{' '}
               <br />
             </h3>
             <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
 
+            <br />
+            <br />
+            <br />
+            <br />
+            <Image
+              className="mountain-fight"
+              src="/me-posing.jpg"
+              alt="Me posing in the bathroom"
+              width={650}
+              height={500}
+            />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <br />
             <br />
             <br />
