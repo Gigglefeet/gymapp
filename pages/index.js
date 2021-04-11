@@ -46,7 +46,7 @@ export default function MyProfile() {
               Global Pandemic?
             </h3>
 
-            <Image
+            {/* <Image
               className="mountain-fight"
               src="/fat-me.jpg"
               alt="Me unhappy after loosing my job because of corona"
@@ -116,10 +116,7 @@ export default function MyProfile() {
               width={950}
               height={550}
             />
-            <img
-              src="/upleveled-screenshot.png"
-              alt="Hafthor in a t-shirt saying training to fight the mountain"
-            />
+
             <br />
             <br />
             <br />
@@ -200,7 +197,7 @@ export default function MyProfile() {
             />
             <div>
               <h3>Of course I destroyed him after the picture was taken </h3>
-            </div>
+            </div> */}
           </div>
         </section>
       </div>
