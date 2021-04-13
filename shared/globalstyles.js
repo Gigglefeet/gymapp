@@ -7,6 +7,7 @@ const myGlobalStyles = css`
     background-color: #1c1a1a;
     ${'' /* neon green color #39ff14 */}
     color: black;
+    font-family: Roboto;
   }
 `;
 

@@ -43,7 +43,6 @@ const dayCheckboxDescription = css`
     justify-content: center;
     background-color: gray;
     border-radius: 10px 10px 0 0;
-
     padding: 10px;
   }
 
@@ -65,16 +64,15 @@ const weekdays = css`
   padding: 30px 20px;
   background-color: #808080;
   border-radius: 20px;
+  z-index: 1;
   .weekday-row {
     display: flex;
     gap: 5px;
     align-items: center;
+    z-index: 5;
   }
   .save-button {
-    width: 10%;
-  }
-  .css-1edt6nb {
-    width: 10%;
+    width: 5%;
   }
 `;
 

@@ -17,6 +17,7 @@ const frontPage = css`
     background-color: black;
     padding: 10px 0;
     z-index: 1;
+    font-family: Roboto;
   }
   ${'' /* a tag in the navigationBar menu below this */}
   a {
@@ -52,9 +53,9 @@ export default function Layout(props) {
       </Head>
       <header css={frontPage}>
         <nav className="navBarFront">
-          <Link href="/myprofile">
-            <a>My Profile</a>
-          </Link>
+          {/* <Link href="/aboutme">
+            <a>About Me</a>
+          </Link> */}
           <Link href="/mygym">
             <a>My exercises</a>
           </Link>

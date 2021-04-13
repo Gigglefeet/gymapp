@@ -3,6 +3,8 @@ import { css } from '@emotion/react';
 import axios from 'axios';
 import Slider, { createSliderWithTooltip } from 'rc-slider';
 import React, { useEffect, useState } from 'react';
+import { Button, Checkbox } from '@material-ui/core';
+
 let baseurl;
 if (process.env.NODE_ENV === 'development') {
   baseurl = 'http://localhost:3000';
@@ -101,7 +103,7 @@ export const ExerciseModal = ({
   const renderRows = () => {
     const rows = [];
     for (let row = 0; row < sets; row++) {
-      // here I need to push rows that is a div with 3 inputs
+      // here I need to push the rows that are a div with 3 inputs
       rows.push(
         <div className="row">
           <input
@@ -250,7 +252,10 @@ export const ExerciseModal = ({
           )}
 
           <div className="rowsOfExercises">{rowsOfExercises}</div>
-          <button
+          <Button
+            variant="contained"
+            color="default"
+            size="small"
             onClick={() => {
               setShowExerciseOverlay(false);
               const updatedTrainingDays = trainingDays.map((trainingDay) => {
@@ -285,7 +290,7 @@ export const ExerciseModal = ({
             className="save-button"
           >
             Save
-          </button>
+          </Button>
         </div>
       </div>
     </div>

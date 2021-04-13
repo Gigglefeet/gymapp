@@ -9,6 +9,7 @@ const labels = css`
   display: flex;
   justify-content: center;
   color: white;
+  margin-top: 85px;
 `;
 
 type Props = {
@@ -29,15 +30,18 @@ export default function Profile(props: Props) {
   }
 
   return (
-    <div css={labels}>
+    <>
       <Head>
-        <title>User Profile: {props.user.username}</title>
+        <title>User Profile</title>
       </Head>
 
-      <h1>{props.user.username}</h1>
+      <div css={labels}>
+        <div>User Profile: {props.user.username}</div>
+        <h1>{props.user.username}</h1>
 
-      <div>id: {props.user.id}</div>
-    </div>
+        <div>id: {props.user.id}</div>
+      </div>
+    </>
   );
 }
 
